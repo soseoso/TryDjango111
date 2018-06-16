@@ -32,8 +32,9 @@ class HomeView(TemplateView):
 		}  
 		return context
 
-class AboutView(TemplateView):
-	template_name = 'about.html'
+# let's make these even more efficient!
+# class AboutView(TemplateView):
+# 	template_name = 'about.html'
 
-class ContactView(TemplateView):
-	template_name = 'contact.html'
+# class ContactView(TemplateView):
+# 	template_name = 'contact.html'
