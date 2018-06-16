@@ -2,41 +2,38 @@ import random
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
+from django.views.generic import TemplateView
 # Create your views here.
-# function based view
-def home(request):  
-	num = None
-	some_list = [
-		random.randint(0, 10000000), 
-		random.randint(0, 10000000), 
-		random.randint(0, 10000000)
-	]
-	condition_bool_item = True
+# can get rid of all of function based views
+# for class based views!
 
-	if condition_bool_item:
-		num = random.randint(0, 10000000)
-	
-	context = {
-		'num': num, 
-		'some_list': some_list
-	}  
-	return render(request, "home.html", context)  
-						   
-def about(request):  
-	context = {
-	} 
-	return render(request, "about.html", context) 
+class HomeView(TemplateView):
+	template_name = 'home.html'
 
-def contact(request):  
-	context = {
-	} 
-	return render(request, "contact.html", context)  
+	# going to add an overriding method called get_context_data
+	def get_context_data(self, *args, **kwargs):
+		# call that default method using the super call
+		# super(HomeView, self) --> TemplateView
+		context = super(HomeView, self).get_context_data(*args, **kwargs)
+		num = None
+		some_list = [
+			random.randint(0, 10000000), 
+			random.randint(0, 10000000), 
+			random.randint(0, 10000000)
+		]
+		condition_bool_item = True
 
-class ContactView(View):
-	def get(self, request, *args, **kwargs):  
-		# the request is still an argument to this get method
-		# add 'arguments' and 'keyword arguments' -- will be explained 
-		# almost default put in class based view
-		print(kwargs)
-		context = {}
-		return render(request, 'contact.html', context)
+		if condition_bool_item:
+			num = random.randint(0, 10000000)
+		
+		context = {
+			'num': num, 
+			'some_list': some_list
+		}  
+		return context
+
+class AboutView(TemplateView):
+	template_name = 'about.html'
+
+class ContactView(TemplateView):
+	template_name = 'contact.html'

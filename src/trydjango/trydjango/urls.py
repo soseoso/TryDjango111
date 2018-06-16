@@ -16,14 +16,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from restaurants.views import home, about, contact, ContactView
+from restaurants.views import HomeView, AboutView, ContactView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', home),
-    url(r'^about/$', about),
-    url(r'^contact/(?P<id>\d+)/$', ContactView.as_view()),
-    # regular expression to have the ability 
-    # to pass in something called an ID
-    # (?P<id>\d+)
+    url(r'^$', HomeView.as_view()),
+    url(r'^about/$', AboutView.as_view()),
+    url(r'^contact/$', ContactView.as_view()),
 ]
