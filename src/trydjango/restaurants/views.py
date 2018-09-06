@@ -32,7 +32,24 @@ class HomeView(TemplateView):
 		}  
 		return context
 
-# let's make these even more efficient!
+# def about(request):
+#	context = {
+#
+#	}
+#	return render(request, 'about.html', context)
+
+
+# def contact(request):
+#	context = {
+#
+#	}
+#	return render(request, 'contact.html', context)
+
+# class ContactView(TemplateView):
+#	def get(self, request, *args, **kwargs):
+#		context = {}
+#		return render(request, 'contact.html', context)
+
 # class AboutView(TemplateView):
 # 	template_name = 'about.html'
 
