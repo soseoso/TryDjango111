@@ -37,7 +37,7 @@ class RestaurantDetailView(DetailView):
 	# 	return context
 
 	def get_object(self, *args, **kwargs):
-		rest_id = self.kwargs.get('rest_id')
-		obj = get_object_or_404(RestaurantLocation, id=rest_id) # pk = rest_id
+		slug = self.kwargs.get('slug')
+		obj = get_object_or_404(RestaurantLocation, slug=slug) # pk = rest_id
 		return obj
 
