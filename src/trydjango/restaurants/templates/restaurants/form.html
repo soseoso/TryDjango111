@@ -5,8 +5,8 @@
 {% block content %}
 <h1>Add Restaurant</h1>
 
-{% if form.errors %}
-{{ errors }}
+{% if form.errors.non_fiend_errors %}
+{{ form.errors }}
 {% endif %}
 <form method="POST"> {% csrf_token %}
     <!-- <input type="text" name="name" placeholder="Your title">
