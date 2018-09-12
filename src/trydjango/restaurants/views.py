@@ -15,6 +15,15 @@ def restaurant_listview(request):
 	}
 	return render(request, template_name, context)
 
+def restaurant_detailview(request, pk):
+	template_name = 'restaurants/restaurantlocation_detail.html'
+	obj = RestaurantLocation.objects.get(slug = slug)
+	context = {
+		"object": obj
+	}
+	return render(request, template_name, context)
+
+
 class RestaurantListView(ListView):
 	template_name = 'restaurants/restaurants_list.html'
 
@@ -28,16 +37,10 @@ class RestaurantListView(ListView):
 		return queryset	
 
 class RestaurantDetailView(DetailView):
-	queryset = RestaurantLocation.objects.all()
-	
-	# def get_context_data(self, *args, **kwargs):
-	# 	print(self.kwargs)
-	# 	context = super(RestaurantDetailView, self).get_context_data(*args, **kwargs)
-	# 	print(context)
-	# 	return context
+	queryset = RestaurantLocation.objects.all() #filter(category__iexact='asian')
 
-	def get_object(self, *args, **kwargs):
-		slug = self.kwargs.get('slug')
-		obj = get_object_or_404(RestaurantLocation, slug=slug) # pk = rest_id
-		return obj
+	# def get_object(self, *args, **kwargs):
+	# 	slug = self.kwargs.get('slug')
+	# 	obj = get_object_or_404(RestaurantLocation, slug=slug) # pk = rest_id
+	# 	return obj
 
